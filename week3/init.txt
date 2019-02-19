@@ -1,3 +1,0 @@
-Name : Tran Quy Duong
-ID   : 20160869
-Class: ICT.01-K61
