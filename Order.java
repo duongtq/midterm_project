@@ -1,48 +1,79 @@
 
-public class Order {
-	public static final int MAX_NUMBERS_ORDERED = 10;
-	private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
-	int n=0;
+public class Order
+{
+	// Private field
 	private int qtyOrdered;
+	private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBER_ORDERED];
 	
-	public int getQtyOrdered() {
+	public static final int MAX_NUMBER_ORDERED = 10;
+	
+	public int getQtyOrdered()
+	{
 		return qtyOrdered;
 	}
-	public void setQtyOrdered(int qtyOrdered) {
+	
+	public void setQtyOrdered(int qtyOrdered)
+	{
 		this.qtyOrdered = qtyOrdered;
 	}
-
-	void addDigitalVideoDisc(DigitalVideoDisc disc) {
-		if (n<MAX_NUMBERS_ORDERED) {
-			itemsOrdered[n] = disc;
-			n = n + 1;
-			System.out.println("Disc added successfully.");
+	
+	public void addDigitalVideoDisc(DigitalVideoDisc disc)
+	{
+		if ( this.qtyOrdered == MAX_NUMBER_ORDERED )
+		{
+			System.out.println("The order is full.");
+			return;
 		}
-		if (n == MAX_NUMBERS_ORDERED) System.out.println("The order is almost full.");
+		
+		itemsOrdered[qtyOrdered] = disc;
+		qtyOrdered = qtyOrdered + 1;
+		System.out.println("The disc has been added.");
 	}
 	
-	void removeDigitalVideoDisc(DigitalVideoDisc disc) {
-		for (int i=0; i<n; i++) if (disc==itemsOrdered[i]) {
-			itemsOrdered[i] = itemsOrdered[n-1];
-			n = n-1;
-			System.out.println("Disc removed successfully.");
+	public void removeDigitalVideoDisc(DigitalVideoDisc disc)
+	{
+		if ( this.qtyOrdered == 0)
+		{
+			System.out.println("The list is empty.");
+			return;
 		}
-		if (n==0) System.out.println("The order is empty.");
+		else
+		{
+			for ( int i = 0; i < this.qtyOrdered; i++)
+			{
+				if ( itemsOrdered[i] == disc )
+				{
+					itemsOrdered[i] = null;
+					System.out.println("The item has been removed.");
+				}
+			}
+		}
 	}
-	float totalCost() {
-		float sum = 0;
-		float temp = 0;
-		for (int i=0; i<n; i++) {
-			temp = itemsOrdered[i].getCost();
-			sum = sum + temp;
+	
+	public float totalCost()
+	{
+		float totalCost = 0;
+		for ( int i = 0; i < this.qtyOrdered; i++ )
+		{
+			if ( itemsOrdered[i] == null )
+			{
+				continue;
+			}
+			totalCost = totalCost + itemsOrdered[i].getCost();
 		}
-		return sum;
+		return totalCost;
 	}
-	void printAll() {
-		for (int i=0; i<n; i++) {
-			String temp = itemsOrdered[i].getTitle();
-			System.out.println("The dvds in the order are:");
-			System.out.println("itemsOrdered["+ i +"]" + " = " + temp);
+	
+	public void printAllMovie(Order order)
+	{
+		for ( DigitalVideoDisc x : order.itemsOrdered )
+		{
+			if ( x == null )
+			{
+				continue;
+			}
+			System.out.println(x.getTitle());
 		}
+		
 	}
 }
