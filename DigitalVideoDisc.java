@@ -1,35 +1,48 @@
-// If you create a constructor method to build a DVD by title then create a constructor method to
-// build a DVD by category. JAVA won't allow you to do this because it'll get confused
-public class DigitalVideoDisc {
+
+public class DigitalVideoDisc
+{
 	private String title;
 	private String category;
 	private String director;
 	private int length;
 	private float cost;
 	
-	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+	// Constructors
+	// By title
+	public DigitalVideoDisc(String title)
+	{
 		super();
 		this.title = title;
+	}
+	
+	// By category and title
+	public DigitalVideoDisc(String title, String category)
+	{
+		super();
+		this.category = category;
+		this.title    = title;
+	}
+	
+	// By title, category and director's name 
+	public DigitalVideoDisc(String title, String category, String director)
+	{
+		super();
+		this.director = director;
+		this.category = category;
+		this.title    = title;
+	}
+	
+	// By all attributes
+	public DigitalVideoDisc(String title, String category, String director, int length, float cost)
+	{
+		super();
+		this.title    = title;
 		this.category = category;
 		this.director = director;
-		this.length = length;
-		this.cost = cost;
+		this.length   = length;
+		this.cost     = cost;
 	}
-	public DigitalVideoDisc(String title) {
-		super();
-		this.title = title;
-	}
-	public DigitalVideoDisc(String title, String category, String director) {
-		super();
-		this.title = title;
-		this.category = category;
-		this.director = director;
-	}
-	public DigitalVideoDisc(String title, String category) {
-		super();
-		this.title = title;
-		this.category = category;
-	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -62,5 +75,3 @@ public class DigitalVideoDisc {
 	}
 	
 }
-
-
