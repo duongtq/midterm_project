@@ -44,31 +44,31 @@ public class DigitalVideoDisc
 	}
 	
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	public String getCategory() {
-		return category;
+		return this.category;
 	}
 	public void setCategory(String category) {
 		this.category = category;
 	}
 	public String getDirector() {
-		return director;
+		return this.director;
 	}
 	public void setDirector(String director) {
 		this.director = director;
 	}
 	public int getLength() {
-		return length;
+		return this.length;
 	}
 	public void setLength(int length) {
 		this.length = length;
 	}
 	public float getCost() {
-		return cost;
+		return this.cost;
 	}
 	public void setCost(float cost) {
 		this.cost = cost;

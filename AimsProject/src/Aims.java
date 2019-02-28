@@ -15,8 +15,8 @@ public class Aims {
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars");
 		dvd2.setCategory("Science Fiction");
 		dvd2.setCost(24.95f);
-		dvd1.setDirector("George Lucas");
-		dvd1.setLength(124);		
+		dvd2.setDirector("George Lucas");
+		dvd2.setLength(124);		
 		// add the dvd to the order
 		anOrder.addDigitalVideoDisc(dvd2);
 		
@@ -31,7 +31,7 @@ public class Aims {
 		System.out.print("Total cost is: ");
 		System.out.println(anOrder.totalCost());
 		// Test code for remove function
-		anOrder.removeDigitalVideoDisc(dvd2);
+		// anOrder.removeDigitalVideoDisc(dvd2);
 		anOrder.printAllMovie();
 		
 		// test driver
@@ -47,7 +47,25 @@ public class Aims {
 		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
 		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
 		
-		myOrder1.printAllMovie();
+		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
+		
+		
+		Order myOrder2 = new Order();
+		// Test method getDateOrder
+		
+		System.out.println("Date created: " + myOrder2.getDateOrdered());
+		
+		
+		Order myOrder3 = new Order();
+		System.out.println("Date created: " + myOrder3.getDateOrdered());
+		
+		// Max ordered reached here. The warning will be printed.
+		Order myOrder4 = new Order();
+		System.out.println("Date created: " + myOrder4.getDateOrdered());
+		
+		System.out.println("\nAll items: ");
+		anOrder.printWithFormat();
+		
 	}
 	
 }
