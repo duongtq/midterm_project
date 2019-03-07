@@ -1,3 +1,5 @@
+package hust.soict.ictglobal.date;
+
 public class DateUtils {
 
 	public static int DateCompare(MyDate date1, MyDate date2)
