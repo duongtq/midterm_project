@@ -1,6 +1,6 @@
 package hust.soict.ictglobal;
 
-import hust.soict.ictglobal.disc.*;
+import hust.soict.ictglobal.aims.media.DigitalVideoDisc;
 import hust.soict.ictglobal.order.*;
 import java.util.Scanner;;
 
@@ -24,10 +24,10 @@ public class DiskTest {
 		DigitalVideoDisc dvd4 = 
 		new DigitalVideoDisc("Two days in New York", "Comedy", "Tran Duong", 140, 16.22f);
 		
-		newOrder.addDigitalVideoDisc(dvd1);
-		newOrder.addDigitalVideoDisc(dvd2);
-		newOrder.addDigitalVideoDisc(dvd3);
-		newOrder.addDigitalVideoDisc(dvd4);
+		newOrder.addMedia(dvd1);
+		newOrder.addMedia(dvd2);
+		newOrder.addMedia(dvd3);
+		newOrder.addMedia(dvd4);
 		
 		System.out.println("Congratulations! You are a lucky customer today.");
 		System.out.println("We will give you a free DVD as a present.");
@@ -45,12 +45,12 @@ public class DiskTest {
 		
 		String title = keyboard.nextLine();
 		
-		for ( int i = 0; i < newOrder.getQtyOrdered(); i++ )
+		for ( int i = 0; i < newOrder.getItemsOrdered().size(); i++ )
 		{
-			if ( newOrder.returnOrder()[i].search(title) == true )
+			if ( ((DigitalVideoDisc) newOrder.getItemsOrdered().get(i)).search(title) == true )
 			{
 				System.out.println("Search result: "
-						+ newOrder.returnOrder()[i].getTitle() );
+						+ newOrder.getItemsOrdered().get(i).getTitle() );
 				keyboard.close();
 				return;
 			}

@@ -1,74 +1,127 @@
 package hust.soict.ictglobal;
+import hust.soict.ictglobal.aims.media.DigitalVideoDisc;
+import hust.soict.ictglobal.aims.media.Media;
 import hust.soict.ictglobal.order.Order;
-import hust.soict.ictglobal.disc.*;
+
+import java.util.Scanner;
 
 public class Aims {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Order anOrder = new Order();
-		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King");
-		dvd1.setCategory("Animation");
-		dvd1.setCost(19.95f);
-		dvd1.setDirector("Roger Allers");
-		dvd1.setLength(87);		
-		// add the dvd to the order
-		anOrder.addDigitalVideoDisc(dvd1);
+	public static void main(String[] args)
+	{
+		String title        ;
+		String category     ;
+		float cost       = 0; 
+		String director     ;
+		int length       = 0;
 		
-		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars");
-		dvd2.setCategory("Science Fiction");
-		dvd2.setCost(24.95f);
-		dvd2.setDirector("George Lucas");
-		dvd2.setLength(124);		
-		// add the dvd to the order
-		anOrder.addDigitalVideoDisc(dvd2);
+		Scanner keyboard = new Scanner(System.in);
 		
-		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin");
-		dvd3.setCategory("Animation");
-		dvd3.setCost(18.99f);
-		dvd3.setDirector("John Musker");
-		dvd3.setLength(90);		
-		// add the dvd to the order
-		anOrder.addDigitalVideoDisc(dvd3);
+		int choice = -1;
+		int bookOrDVD = -1;
+		int id = -1;
 		
-		System.out.print("Total cost is: ");
-		System.out.println(anOrder.totalCost());
-		// Test code for remove function
-		// anOrder.removeDigitalVideoDisc(dvd2);
-		anOrder.printAllMovie();
+		Order newOrder = new Order();
 		
-		// test driver
-		Order myOrder = new Order();
-		DigitalVideoDisc[] discArray = {dvd1, dvd1, dvd1, dvd1, dvd1, dvd1, dvd1, dvd1, dvd1, dvd1};
-		myOrder.addDigitalVideoDisc(discArray);
+		while ( choice != 0 )
+		{
+			showMenu();
+			System.out.print("Enter your choice: ");
+			choice = keyboard.nextInt();
 		
-		Order myOrder1 = new Order();
+			switch( choice )
+			{
+				case 0:
+					System.out.println("Goodbye. See you again!");
+					break;
+				case 1:
+					
+					System.out.println("Order created.");
+					
+					break;
+				case 2:
+					
+					System.out.println("Enter: 1> to enter a book.");
+					System.out.println("       2> to enter a DVD");
+					
+					bookOrDVD = keyboard.nextInt();
+					
+					switch ( bookOrDVD )
+					{
+						case 1:
+											
+							System.out.print("Enter cost: ");
+							cost = keyboard.nextFloat();
+							keyboard.nextLine();
+							
+							System.out.print("Enter category: ");
+							category = keyboard.nextLine();
+							
+							System.out.print("Enter title: ");
+							title = keyboard.nextLine();
+							
+							Media newBook = new Media(title, category, cost);
+							newOrder.addMedia(newBook);
+							
+							break;
+						case 2:
+							
+							System.out.print("Enter cost: ");
+							cost = keyboard.nextFloat();
+							keyboard.nextLine();
+							
+							System.out.print("Enter category: ");
+							category = keyboard.nextLine();
+							
+							System.out.print("Enter length: ");
+							length = keyboard.nextInt();
+							keyboard.nextLine();
+							
+							System.out.print("Enter director: ");
+							director = keyboard.nextLine();
+							
+							System.out.print("Enter title: ");
+							title = keyboard.nextLine();
+							
+							DigitalVideoDisc newDisc = new DigitalVideoDisc(title, category, director, length, cost);
+							
+							newOrder.addMedia(newDisc);
+							
+							break;
+					}
+					// End of case 2
+					break;
+				case 3:
+					
+					System.out.print("Enter the id of item: ");
+					
+					id = keyboard.nextInt();
+					
+					newOrder.removeMedia(id);
+					
+					break;
+				case 4:
+					
+					newOrder.printWithFormat();
+					break;
+			}
+		}
 		
-		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
-		myOrder1.addDigitalVideoDisc(dvd2, dvd3);
-		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
-		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
-		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
+		keyboard.close();
 		
-		myOrder1.addDigitalVideoDisc(dvd1, dvd2);
-		
-		
-		Order myOrder2 = new Order();
-		// Test method getDateOrder
-		
-		System.out.println("Date created: " + myOrder2.getDateOrdered());
-		
-		
-		Order myOrder3 = new Order();
-		System.out.println("Date created: " + myOrder3.getDateOrdered());
-		
-		// Max ordered reached here. The warning will be printed.
-		Order myOrder4 = new Order();
-		System.out.println("Date created: " + myOrder4.getDateOrdered());
-		
-		System.out.println("\nAll items: ");
-		anOrder.printWithFormat();
-		
+	}
+	
+	public static void showMenu()
+	{
+		System.out.println("Order Management Application: ");
+		System.out.println("--------------------------------");
+		System.out.println("1. Create new order");
+		System.out.println("2. Add item to the order");
+		System.out.println("3. Delete item by id");
+		System.out.println("4. Display the items list of order");
+		System.out.println("0. Exit");
+		System.out.println("--------------------------------");
+		System.out.println("Please choose a number: 0-1-2-3-4");
 	}
 	
 }
