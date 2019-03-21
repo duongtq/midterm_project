@@ -1,6 +1,6 @@
 package hust.soict.ictglobal.aims.media;
 
-public class Media {
+public abstract class Media {
 	
 	private String title;
 	private String category;
