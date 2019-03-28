@@ -2,7 +2,7 @@ package hust.soict.ictglobal.aims.media;
 
 import java.util.ArrayList;
 
-public class CompactDisc extends Disc implements Playable
+public class CompactDisc extends Disc implements Playable, Comparable<Object>
 {
 	public CompactDisc()
 	{
@@ -66,5 +66,37 @@ public class CompactDisc extends Disc implements Playable
 		{
 			this.tracks.get(i).play();
 		}
+	}
+	
+	public int getNumberOfTracks()
+	{
+		return this.tracks.size();
+	}
+	
+	@Override
+	public int compareTo(Object o)
+	{
+		CompactDisc cd = (CompactDisc) o;
+		
+		if ( this.getNumberOfTracks() == cd.getNumberOfTracks() )
+		{
+			if ( this.getLength() > cd.getLength() )
+			{
+				return 1;
+			}
+			else
+			{
+				return -1;
+			}
+		}
+		else if (  this.getNumberOfTracks() > cd.getNumberOfTracks() )
+		{
+			return 1;
+		}
+		else if (  this.getNumberOfTracks() < cd.getNumberOfTracks() )
+		{
+			return -1;
+		}
+		return 0;
 	}
 }

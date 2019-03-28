@@ -1,5 +1,5 @@
 package hust.soict.ictglobal.aims.media;
-public class DigitalVideoDisc extends Disc implements Playable
+public class DigitalVideoDisc extends Disc implements Playable, Comparable<Object>
 {
 	private String director;
 	private int length;
@@ -56,5 +56,21 @@ public class DigitalVideoDisc extends Disc implements Playable
 	{
 		System.out.println("Playing DVD: " + this.getTitle());
 		System.out.println("DVD length: " + this.getLength());
+	}
+	
+	@Override
+	public int compareTo(Object o)
+	{
+		DigitalVideoDisc dvd = (DigitalVideoDisc) o;
+		
+		if ( this.getCost() > dvd.getCost() )
+		{
+			return 1;
+		}
+		else if ( this.getCost() < dvd.getCost() )
+		{
+			return -1;
+		}
+		return 0;
 	}
 }

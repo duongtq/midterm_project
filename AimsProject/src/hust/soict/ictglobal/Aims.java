@@ -6,6 +6,10 @@ import hust.soict.ictglobal.aims.media.Media;
 import hust.soict.ictglobal.aims.media.Track;
 import hust.soict.ictglobal.order.Order;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Aims {
@@ -49,20 +53,16 @@ public class Aims {
 					newOrder = new Order();
 					break;
 				case 2:
-					
 					System.out.println("Enter: 1> to enter a Book.");
 					System.out.println("       2> to enter a DVD");
 					System.out.println("       3> to enter a CD");
-					
 					bookOrDVDOrCD = keyboard.nextInt();
-					
 					while ( bookOrDVDOrCD != 1 && bookOrDVDOrCD != 2 && bookOrDVDOrCD != 3)
 					{
 						System.out.println("Invalid operation.");
 						System.out.print("Please choose the valid operation: ");
 						bookOrDVDOrCD = keyboard.nextInt();
 					}
-					
 					switch ( bookOrDVDOrCD )
 					{
 						case 1:
@@ -77,8 +77,7 @@ public class Aims {
 							title = keyboard.nextLine();
 							
 							Media newBook = new Book(title, category, cost);
-							newOrder.addMedia(newBook);
-							
+							newOrder.addMedia(newBook);		
 							break;
 						case 2:
 							System.out.print("Enter cost: ");
@@ -99,16 +98,13 @@ public class Aims {
 							title = keyboard.nextLine();
 							
 							DigitalVideoDisc newDisc = new DigitalVideoDisc(title, category, director, length, cost);
-							
 							System.out.print("Do you want to play " + newDisc.getTitle() + "?: ");
-							
 							toPlay = keyboard.next().charAt(0);
 							
 							if ( toPlay == 'y' )
 							{
 								newDisc.play();
 							}
-							
 							newOrder.addMedia(newDisc);
 							break;
 						case 3:
@@ -181,6 +177,114 @@ public class Aims {
 		newThread.setDaemon(true);
 		
 		newThread.start();
+		
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King");
+		dvd1.setCategory("Animation");
+		dvd1.setCost(19.95f);
+		dvd1.setDirector("Roger Allers");
+		dvd1.setLength(87);		
+
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars");
+		dvd2.setCategory("Science Fiction");
+		dvd2.setCost(24.95f);
+		dvd2.setDirector("George Lucas");
+		dvd2.setLength(124);		
+		
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin");
+		dvd3.setCategory("Animation");
+		dvd3.setCost(18.99f);
+		dvd3.setDirector("John Musker");
+		dvd3.setLength(90);
+
+		Collection<DigitalVideoDisc> collection = new java.util.ArrayList<DigitalVideoDisc>();		
+		collection.add(dvd2);
+		collection.add(dvd1);
+		collection.add(dvd3);
+		
+		Iterator<DigitalVideoDisc> iterator = collection.iterator();
+		System.out.println("--------------------------------------");
+		System.out.println("The DVDs currently in the order are: ");
+			
+		while ( iterator.hasNext() )
+		{
+			System.out.println( iterator.next().getTitle() );
+		}
+		
+		// Sort the collection of DVDs - based on compareTo() method
+		
+		java.util.Collections.sort((java.util.List<DigitalVideoDisc>)collection);
+		
+		iterator = collection.iterator();
+		
+		System.out.println("--------------------------------------");
+		System.out.println("The DVDs in sorted order are: ");
+		while ( iterator.hasNext() )
+		{
+			System.out.println( iterator.next().getTitle() );
+		}
+		System.out.println("--------------------------------------");
+
+		CompactDisc cd1 = new CompactDisc();
+		CompactDisc cd2 = new CompactDisc();
+		CompactDisc cd3 = new CompactDisc();
+		
+		cd1.setTitle("SK da realest");
+		cd2.setTitle("The best of GVR");
+		cd3.setTitle("Ngay Tan");
+		
+		Track track1 = new Track();
+		track1.setTitle("Chua bao gio");
+		track1.setLength(240);
+		
+		Track track2 = new Track();
+		track2.setTitle("The Good Die Young");
+		track2.setLength(312);
+		
+		Track track3 = new Track();
+		track3.setTitle("Rewind");
+		track3.setLength(280);
+		
+		Track track4 = new Track();
+		track4.setTitle("Fan cua tao");
+		track4.setLength(220);
+		
+		cd1.addTrack(track1);
+		cd1.addTrack(track4);
+		
+		cd2.addTrack(track4);
+		cd2.addTrack(track3);
+		cd2.addTrack(track2);
+		
+		cd3.addTrack(track3);
+		cd3.addTrack(track2);
+		
+		List<CompactDisc> discs = new ArrayList<CompactDisc>();
+		
+		discs.add(cd1);
+		discs.add(cd2);
+		discs.add(cd3);
+		
+		Iterator<CompactDisc> listIterator = discs.iterator();
+		System.out.println("--------------------------------------");
+		System.out.println("The DVDs currently in the order are: ");
+			
+		while ( listIterator.hasNext() )
+		{
+			System.out.println( listIterator.next().getTitle() );
+		}
+		
+		// Sort the collection of CompactDisc - based on compareTo() method
+		java.util.Collections.sort((java.util.List<CompactDisc>)discs);
+		
+		listIterator = discs.iterator();
+		
+		System.out.println("--------------------------------------");
+		System.out.println("The DVDs in sorted order are: ");
+		while ( listIterator.hasNext() )
+		{
+			System.out.println( listIterator.next().getTitle() );
+		}
+		System.out.println("--------------------------------------");
 	}
 	public static void showMenu()
 	{

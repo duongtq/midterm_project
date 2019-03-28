@@ -1,11 +1,61 @@
 package hust.soict.ictglobal.aims.media;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Book extends Media
+public class Book extends Media implements Comparable<Object>
 {
 
 	private ArrayList<String> authors = new ArrayList<String>();
+	private String content;
+	private List<String> contentTokens;
+	private Map<String, Integer> wordFrequency;
+	
+	public void processContent()
+	{
+		 String[] result = this.content.split("[\\p{Punct}\\s]+");
+		 
+		 Arrays.sort(result);
+		 
+		 this.contentTokens = Arrays.asList(result);
+		 
+		 this.wordFrequency = new HashMap<>();
+		 for (String s : this.contentTokens )
+		 {
+			 Integer count = this.wordFrequency.get(s);
+			 if (count == null)
+			 {
+				 count = 0;
+			 }
+			 
+			 this.wordFrequency.put(s, count + 1);
+		 }
+	}
+	
+	@Override
+	public String toString()
+	{
+		System.out.println("The number of words: " + this.contentTokens.size() );
+		System.out.printf("%-15s %-10s\n", "Word list", "Frequency");
+		for ( Map.Entry<String, Integer> entry : wordFrequency.entrySet() )
+		{
+			System.out.printf("%-15s %-10d\n", entry.getKey(), entry.getValue());
+		}
+		return "OK";
+	}
+	
+	public void setContent(String content)
+	{
+		this.content = content;
+	}
+	
+	public String getContent()
+	{
+		return this.content;
+	}
 	
 	public Book()
 	{
@@ -77,5 +127,21 @@ public class Book extends Media
 		{
 			this.getAuthors().remove(remove_index);
 		}
+	}
+
+	@Override
+	public int compareTo(Object o)
+	{
+		Book book = (Book) o;
+		
+		if ( this.getTitle().compareToIgnoreCase(book.getTitle()) > 0 )
+		{
+			return 1;
+		}
+		else if (  this.getTitle().compareToIgnoreCase(book.getTitle()) < 0)
+		{
+			return -1;
+		}
+		return 0;
 	}
 }
