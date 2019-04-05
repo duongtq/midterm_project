@@ -1,30 +1,29 @@
 package hust.soict.ictglobal.lab02;
 
+import java.util.Scanner;
+
 public class StarParamid
-{ 
-    public static void printTriagle(int n) 
+{
+    public static void main(String args[])
     {
-        for (int i=0; i<n; i++) 
-        { 
-            for (int j=n-i; j>1; j--) 
-            { 
-                System.out.print(" "); 
-            } 
-            for (int j=0; j<=i; j++ ) 
-            { 
-                // printing stars 
-                System.out.print("* "); 
-            } 
-   
-            // ending line after each row 
-            System.out.println(); 
-        } 
-    } 
-      
-    // Driver Function 
-    public static void main(String args[]) 
-    { 
-        int n = 5; 
-        printTriagle(n); 
-    } 
+        int i, space, rows, k=0;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter n: ");
+        rows = scan.nextInt();
+        for(i=1; i<=rows; i++)
+        {
+            for(space=1; space<=(rows-i); space++)
+            {
+                System.out.print("  ");
+            }
+            while(k != (2*i-1))
+            {
+                System.out.print("* ");
+                k++;
+            }
+            k = 0;
+            System.out.println();
+        }
+        scan.close();
+    }
 }
