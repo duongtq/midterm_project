@@ -1,0 +1,8 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#nextSceneButton {
+	-fx-background-image: url('../../images/Next_48x48.png');
+}
+
+#previousSceneButton {
+	-fx-background-image: url('../../images/Previous_48x48.png');
+}
